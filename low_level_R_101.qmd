@@ -1,0 +1,101 @@
+---
+title: "Low level 101"
+author: "Karla Otoude"
+format: html
+---
+## Vectors, variables, 
+###
+
+Rattrape le début !!
+
+A limited number of types that can be used to create complicated objects of different classes : 
+- logical 
+- factor
+- list
+
+```{r}
+typeof(1)
+typeof(2L)
+typeof("alice")
+typeof(TRUE)
+typeof(iris)
+```
+### Vector
+
+A vector is a collection of values of the same type (by opposition list is an arbitrary collection of values)
+
+```{r}
+y <- c(1, 2, -14, 42)
+y
+```
+Direct access to vector elements is implemented by the bracket operator `[]`. 
+Beware that the indexes start at 1. 
+
+```{r}
+y[3]
+```
+
+```{r}
+y[0]
+y[-1]
+```
+Vector of 0 is a numeric because the class of the vector is numeric
+vector of -1 removes the first element 
+
+Negative values can be used to "remove" elements 
+
+
+```{r}
+1:6
+typeof(1:6)
+```
+The function seq gives a sequence that starts at the first value, ends at the second and proceed by steps given by the 3rd parameter (here we go 2 by 2)
+```{r}
+seq(2, 6, 2)
+```
+
+
+### Complex indexing
+```{r}
+z <- c("Alice", "Bob", "Charlie", "Dylan")
+z
+z[3:4]
+```
+
+```{r}
+z
+z[2]
+z[-1:-3]
+```
+
+```{r}
+foo <- 10:60
+bar <- seq(1, 50, 4)
+foo
+foo[bar]
+```
+
+```{r}
+x <- 1:5
+y <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+x(y)
+```
+
+
+### Vector oriented calculation
+
+```{r}
+x <- 1:5
+y <- 6:10
+x + y
+x - y
+x < y
+```
+Calculations possible because they have the same length
+
+```{r}
+x <- 10:20
+x - 5
+x[x>15]
+```
+Useful to check various thing about a dataset (compare x under various views)
