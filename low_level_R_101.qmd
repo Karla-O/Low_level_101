@@ -8,6 +8,10 @@ format: html
 
 Rattrape le début !!
 
+
+## Type and classes
+
+### Types
 A limited number of types that can be used to create complicated objects of different classes : 
 - logical 
 - factor
@@ -19,10 +23,31 @@ typeof(2L)
 typeof("alice")
 typeof(TRUE)
 typeof(iris)
+typeof(list())
+typeof(typeof)
 ```
-### Vector
+
+### Classes
+```{r}
+data(iris)
+typeof(iris)
+class(iris)
+```
+
+
+
+## Vector
 
 A vector is a collection of values of the same type (by opposition list is an arbitrary collection of values)
+Many things in R are vectors (and most of the other things are lists)
+
+```{r}
+x <- 15:25
+length(x) ## all vectors have a length
+x[1]
+```
+The 'c' function can be seen as a creation function, or, more accurately as a vector concatenation function 
+
 
 ```{r}
 y <- c(1, 2, -14, 42)
@@ -78,7 +103,7 @@ foo[bar]
 ```{r}
 x <- 1:5
 y <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
-x(y)
+x[y]
 ```
 
 
@@ -99,3 +124,13 @@ x - 5
 x[x>15]
 ```
 Useful to check various thing about a dataset (compare x under various views)
+
+
+
+### Indexing
+
+```{r}
+x <- c(6,5,1,2,3,4)
+x[3]
+```
+
