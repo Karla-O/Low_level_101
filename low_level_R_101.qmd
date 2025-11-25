@@ -415,3 +415,45 @@ lapply(my_data, \(x) 1+2*log(x))
 ```
 
 Let's say we want to load a list of files : we can use sapply by using a list of files' name and the function read.csv or read.xlsl (excel)
+
+
+### Closure 
+
+```{r}
+power_function <- function(y) {
+  \(x)x^y ## closure : a function + some values
+}
+to_the_cube <- power_function(3)
+to_the_cube(1:10)
+to_the_cube
+\(x, y) x^y
+```
+The "environment" = the closure of the function 
+In the function power_function, we don't have the value of y, we have to call it in order for it to exist and it disappears after the function is executed 
+
+The closure = values that can be taken by y ?
+
+```{r}
+x_to_y <- function(x, y) {
+  x^y
+}
+f <- \(x) x_to_y(x, 2)
+f(5)
+f
+```
+f = function that maps x to y with y = 2 as something fixed 
+
+
+```{r}
+z <- 3
+g <- \(x) x_to_y(x, z)
+g(3)
+z <- 4
+g(3)
+g
+```
+Here in the def of g we are capturing the variable z : meaning that if later on I change the value of z, its going to change the function within g 
+(whereas before when we created function, the variables in the function were separated from the variable outside of it)
+
+Here if we delete the variable using rm(z) the function no longer works (g(5) does not work for example)
+
