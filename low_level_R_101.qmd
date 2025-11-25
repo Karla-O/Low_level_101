@@ -136,3 +136,54 @@ x[3]
 
 The indexing operation '[]' does not change the type or the class of the corresponding object
 
+### Double brackets
+```{r}
+x <- list(c(1,2,3), c(TRUE, FALSE), LETTERS[10:15])
+x[1] ## single 
+x[(1)] ## double
+```
+
+```{r}
+x <- list(c(1,2,3), c(TRUE, FALSE), LETTERS[10:15])
+x[[2]] <- c ("toto", "bar")
+x[[4]] <- 1:15 ## sequence of integers from 1 to 15
+x
+```
+
+```{r}
+x[[c(1, 2)]]
+x[[c(3, 2)]]
+```
+
+First one interpreted as an index in the list, and the second one is an index in the object (the second element of the list)
+
+
+
+```{r}
+y <- list(1:4, list(letters[1:5], list(c("foo", "bar"))))
+y
+y[[2]]
+y[[c(2,1)]]
+y[[c(2, 2, 1, 2)]]
+
+```
+This kind of structure allows us to build a tree 
+
+
+
+### Names 
+```{r}
+z <- list(keys = c("A", "B", "C"), values = c(10, 11, 12), key = c(TRUE, FALSE))
+z
+z[[1]]
+z$keys ## a named access with the dollar operator is similar to the double brackets
+z$val ## even if we did not write "values" entirely it searches values (funny but dangerous name completion)
+z$key
+z$ke ## if the operator searches for a matching element and there are multiple possibilities, the result is "null"
+z[["keys"]]
+z[["val"]] ## exact matching only (since val does not exist we only get null)
+z["values"] ## Only one bracket so it's a list
+z["values"] |> class()
+z[["values"]] |> class() ## double bracket : so it's a list
+```
+Remark : a data frame is a list in which every element has the same length
