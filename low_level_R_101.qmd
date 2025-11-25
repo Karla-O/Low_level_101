@@ -187,3 +187,114 @@ z["values"] |> class()
 z[["values"]] |> class() ## double bracket : so it's a list
 ```
 Remark : a data frame is a list in which every element has the same length
+
+
+
+
+```{r}
+names(z) <- c("A", "B", "C")
+z
+```
+
+
+
+## Function
+
+R extensions (packages) consist essentially in collections 
+
+```{r}
+names
+```
+A function is an object that be called by adding parentheses after the function name and possibly parameters inside the parentheses (effective parameters (as opposed to formal parameters)).
+Ex : the names function requires as a formal parameter x 
+
+
+
+In R function can have multipmle formal parameters and some of them may have default values. When a function is called, one has to specify in general at least the values for the parameters xithout a default value 
+
+```{r}
+log(10) ## base taxe the default value (e)
+log(10,10) ## now base = 10
+```
+
+
+```{r}
+seq
+```
+
+```{r}
+seq.int
+```
+
+```{r}
+seq.int(1, 10) ## by is set to 1
+seq.int(10, 1) ## by is set to -1
+```
+
+### Creating functions 
+
+This is done with the `function` key word
+```{r}
+my_fun <- function(x, y) ## between parentheses we specify the formal parameters
+  ## between the curcly braces {} we describe the operation implemented by the function
+  {2*abs(x-y)abs(y)*1e-15}
+```
+```{r}
+my_fun <- function(x, y) { ## between parentheses we specify the formal parameters
+  ## between the curcly braces {} we describe the operation implemented by the function
+  2 * abs(x - y) * abs(y) * 1e-15
+}
+```
+
+```{r}
+functionBody(my_fun)
+```
+
+```{r}
+#| echo: false
+my_fun() ## cannot work : x and y are missing
+```
+
+
+```{r}
+my_fun(2, 1)
+my_fun(2, 2)
+my_fun(0, 0)
+```
+
+Function execution is essentially running the code inside th ebody of the function after replacing the formal parameters by the value used as effective parameters at the call point (call point = where we write the function)
+
+The value of the call is the last value computed in the function (if we write 3 times my fun, the last written is the value)
+
+```{r}
+my_fun(4, 1) ## x takes the value 4, and y the value 1 
+```
+
+
+```{r}
+my_second_fun <- function(x, y) {
+z <- x + y
+z/y
+z/x
+}
+```
+
+
+```{r}
+my_second_fun(1, 2)
+```
+
+A variable defined in a function is private to the function. It does not care about existing variables with the same name and it disappears just before the end of the function execution 
+(it is the case for z here)
+
+```{r}
+my_second_fun(1, 2)
+
+z <- 10
+my_second_fun(1, 2)
+```
+Variables inside the function can have the same name as variabels outside of it
+
+
+
+
