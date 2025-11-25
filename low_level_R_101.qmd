@@ -482,7 +482,7 @@ x > 0
 sum(x > 0)
 sum(x > mean(x))
 x[x <= mean(x)]
-length(x[ x > mean(x)]) #length of values of x larger than its mean
+length(x[ x > mean(x)]) ##length of values of x larger than its mean
 ```
 
 
@@ -499,5 +499,52 @@ u <- c(1,2,3, 4)
 v <- c(-1,1) ## here we just need to duplicate v 
 u + v
 u * v
+```
+
+### If else 
+
+We want to compute the Shannon's entropy of a distribution : 
+
+$$
+H(p) = \sum_{k=1}^Kp_k\log p_k,
+$$
+
+Where $p_K$ is the probaility of observing $k$. A possible naive definition is the following one (see function below):
+```{r}
+H <- function(x) {
+  sum(p*log(p))
+}
+```
+
+
+```{r}
+rep(1,10) ## replciate 1 ten times
+rep(1,10)/10          ## uniform probability over 1 to 10
+H(rep(1,10)/10)
+```
+
+
+```{r}
+my_dist = c(0,0.5,0.5) # distribution over 1 2 and 3
+H(my_dist)
+0*log(0) ## Undefined
+```
+
+
+The natural convention to entropy computation is that $p_k\log(p_k)=0$
+when  $p_k=0$. We can use `ifelse` to implement that.
+
+```{r}
+working_H <- function(p) {
+  p_logp <- ifelse(p = 0, p*log(p), 0)
+  -sum(p_logp)
+}
+```
+
+
+```{r}
+working_H(my_dist) ## Corrige avec le cours du prof 
+working_H(rep(1, 3)/3)
+working_H(c(1, 0, 0))
 ```
 
