@@ -134,3 +134,5 @@ x <- c(6,5,1,2,3,4)
 x[3]
 ```
 
+The indexing operation '[]' does not change the type or the class of the corresponding object
+
